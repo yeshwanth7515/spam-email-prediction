@@ -1,40 +1,40 @@
-# Week 2 — Data Cleaning and Transformation
+# Week 3 — EDA and Visualization Strategy
 
 **Project:** Spam Email Prediction using Machine Learning
 **Role:** Python Specialist Intern (Data Science)
-**Deliverable:** `Week2_Data_Cleaning_and_Transformation.docx`
+**Deliverable:** `Week3_EDA_and_Visualization_Strategy.docx`
 
 ## Purpose
 
-Turn the raw SMS Spam Collection text into a clean, leakage-free, model-ready feature matrix.
+Explore the cleaned dataset systematically to surface the signals that will drive model choice and
+feature engineering in Week 4.
 
 ## What This Week Covers
 
-- **Data Quality Assessment** — a structural audit of the raw data, catalogue of expected quality
-  issues (duplicates, encoding artefacts, label noise), and a note on why classic outlier-removal
-  doesn't apply to short text messages.
-- **The Cleaning Pipeline** — a seven-step process:
-  1. Structural clean-up
-  2. Duplicate removal, missing values and label-conflict resolution
-  3. Feature extraction *before* stripping (so signal like punctuation counts and message length is
-     captured before it's normalised away)
-  4. Text normalisation (case-folding, punctuation, whitespace)
-  5–7. Tokenisation, stop-word handling and lemmatisation
-- **Transformation Strategy** — a two-block feature design: TF-IDF text features (Block A) and scaled
-  structural features (Block B), with a discussion of normalisation vs. standardisation and how class
-  imbalance is handled.
-- **Splitting Strategy and Leakage Prevention** — a leakage checklist and the decision to encapsulate
-  every transformation inside a single scikit-learn `Pipeline`, fitted only on training folds.
-- **Validation of the Cleaning Process** — before-and-after reporting and manual spot checks to
-  confirm the pipeline behaves as intended.
-- **Deliverables** — the concrete artefacts this stage produces (cleaned dataset, fitted
-  transformers, cleaning report).
+A five-layer exploratory framework:
+
+1. **Overview** — class distribution (spam vs. ham) and dataset-level sanity checks.
+2. **Univariate Analysis** — message-length distribution and a catalogue of single-variable plots.
+3. **Bivariate Analysis Against the Target** — box and violin plots comparing feature distributions
+   across spam/ham, with a quantified separation score and an expected feature ranking.
+4. **Text-Specific Analysis** — token frequency by class, bigram analysis, word clouds, and
+   identification of the most discriminative terms.
+5. **Multivariate Analysis and Hypothesis Testing** — a correlation heat map, a 2-D projection of the
+   feature space, and formal statistical hypothesis checks (not just visual impressions).
+
+Also included:
+- **Visualisation Toolchain and Plotting Standards** — consistent style, colour and labelling rules
+  across every figure.
+- **Complete Figure Inventory** — a numbered list of every plot produced, tying each back to the
+  section that motivates it.
+- **Insight Log** — a template (with a worked example) for recording each finding, the evidence
+  behind it, and its implication for modelling — with a discipline of separating observation from
+  interpretation.
 
 ## Key Decision
 
-All cleaning and feature-engineering steps are encapsulated in one `Pipeline` object rather than run
-as ad-hoc scripts, so the exact same transformations apply identically to training and test data with
-zero risk of information leakage.
+Every insight is logged against its supporting evidence *before* it's allowed to influence modelling
+choices, to avoid confirmation bias when Week 4 selects algorithms and features.
 
 ## Before Submitting
 
