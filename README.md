@@ -1,40 +1,42 @@
-# Week 3 — EDA and Visualization Strategy
+# Week 4 — Model Selection and Evaluation Plan
 
 **Project:** Spam Email Prediction using Machine Learning
 **Role:** Python Specialist Intern (Data Science)
-**Deliverable:** `Week3_EDA_and_Visualization_Strategy.docx`
+**Deliverable:** `Week4_Model_Selection_and_Evaluation_Plan.docx`
 
 ## Purpose
 
-Explore the cleaned dataset systematically to surface the signals that will drive model choice and
-feature engineering in Week 4.
+Move from features to a defensible final model, with an evaluation plan built around the real cost
+of errors in a spam filter, not raw accuracy.
 
 ## What This Week Covers
 
-A five-layer exploratory framework:
-
-1. **Overview** — class distribution (spam vs. ham) and dataset-level sanity checks.
-2. **Univariate Analysis** — message-length distribution and a catalogue of single-variable plots.
-3. **Bivariate Analysis Against the Target** — box and violin plots comparing feature distributions
-   across spam/ham, with a quantified separation score and an expected feature ranking.
-4. **Text-Specific Analysis** — token frequency by class, bigram analysis, word clouds, and
-   identification of the most discriminative terms.
-5. **Multivariate Analysis and Hypothesis Testing** — a correlation heat map, a 2-D projection of the
-   feature space, and formal statistical hypothesis checks (not just visual impressions).
-
-Also included:
-- **Visualisation Toolchain and Plotting Standards** — consistent style, colour and labelling rules
-  across every figure.
-- **Complete Figure Inventory** — a numbered list of every plot produced, tying each back to the
-  section that motivates it.
-- **Insight Log** — a template (with a worked example) for recording each finding, the evidence
-  behind it, and its implication for modelling — with a discipline of separating observation from
-  interpretation.
+- **Model Selection Criteria** — weighted criteria for choosing an algorithm, and the data
+  characteristics (short, sparse, imbalanced text) that constrain the choice.
+- **Candidate Algorithms** — a majority-class baseline, Multinomial Naive Bayes, Logistic Regression,
+  Linear SVM, Random Forest, and Gradient Boosting as a supplementary candidate, plus a section on
+  approaches that were rejected and why.
+- **Evaluation Metrics** — the confusion matrix, a metric hierarchy, and an explicit argument for
+  demoting accuracy given class imbalance (precision on the spam class is prioritised, since a false
+  positive — a real message marked spam — is costlier than a missed spam message).
+- **Validation Strategy** — a three-way train/validation/test split, stratified k-fold
+  cross-validation, learning and validation curves, and a cross-corpus generalisation test against
+  the Enron-Spam dataset.
+- **Hyper-parameter Tuning** — search spaces per algorithm and the search strategy used.
+- **Decision Threshold Optimisation** — making the precision/recall trade-off an explicit, tunable
+  choice rather than leaving the default 0.5 threshold.
+- **Error Analysis** — a procedure for reviewing misclassifications, anticipated error patterns, and
+  model interpretation.
+- **Deployment, Monitoring and Retraining** — model persistence, concept drift, and known
+  limitations.
+- **Final Model Selection Process** — the decision procedure, expected outcome, and a final reporting
+  template.
 
 ## Key Decision
 
-Every insight is logged against its supporting evidence *before* it's allowed to influence modelling
-choices, to avoid confirmation bias when Week 4 selects algorithms and features.
+Accuracy is deliberately treated as a secondary metric. The primary criterion is precision on the
+spam class, because in this domain a false positive is far more costly than a false negative, and the
+whole evaluation plan — metrics, threshold tuning, error analysis — is built around that priority.
 
 ## Before Submitting
 
