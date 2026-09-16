@@ -1,39 +1,40 @@
-# Week 1 — Project Planning and Dataset Scoping
+# Week 2 — Data Cleaning and Transformation
 
 **Project:** Spam Email Prediction using Machine Learning
 **Role:** Python Specialist Intern (Data Science)
-**Deliverable:** `Week1_Project_Planning_and_Dataset_Scoping.docx`
+**Deliverable:** `Week2_Data_Cleaning_and_Transformation.docx`
 
 ## Purpose
 
-Lay the foundation for the four-week project: define the problem precisely, choose a dataset with a
-clear rationale, and plan the workflow before any code is written.
+Turn the raw SMS Spam Collection text into a clean, leakage-free, model-ready feature matrix.
 
 ## What This Week Covers
 
-- **Executive Summary** — framing spam classification as a real security and scale problem, not just
-  an accuracy exercise.
-- **Problem Statement & Motivation** — why the problem matters (scale, security, concept drift,
-  pedagogical value, reproducibility).
-- **Objectives and Goals** — primary objective, secondary objectives, and measurable success
-  criteria, with explicit in-scope and out-of-scope boundaries.
-- **Dataset Research and Selection** — candidate datasets considered, final choice (SMS Spam
-  Collection v.1, ~5,572 messages, ~13% spam / 87% ham), dataset schema, and ethical/privacy
-  considerations.
-- **Methodology** — the high-level analytical workflow and stage-by-stage detail, plus the planned
-  Python toolchain.
-- **Timeline and Checkpoints** — a four-week schedule with validation gates and effort allocation
-  (~30–35 hours/week).
-- **Risk Register** — anticipated challenges and mitigations.
-- **Repository Structure** — the full planned repo layout and reproducibility controls (fixed random
-  seed, pinned dependencies).
+- **Data Quality Assessment** — a structural audit of the raw data, catalogue of expected quality
+  issues (duplicates, encoding artefacts, label noise), and a note on why classic outlier-removal
+  doesn't apply to short text messages.
+- **The Cleaning Pipeline** — a seven-step process:
+  1. Structural clean-up
+  2. Duplicate removal, missing values and label-conflict resolution
+  3. Feature extraction *before* stripping (so signal like punctuation counts and message length is
+     captured before it's normalised away)
+  4. Text normalisation (case-folding, punctuation, whitespace)
+  5–7. Tokenisation, stop-word handling and lemmatisation
+- **Transformation Strategy** — a two-block feature design: TF-IDF text features (Block A) and scaled
+  structural features (Block B), with a discussion of normalisation vs. standardisation and how class
+  imbalance is handled.
+- **Splitting Strategy and Leakage Prevention** — a leakage checklist and the decision to encapsulate
+  every transformation inside a single scikit-learn `Pipeline`, fitted only on training folds.
+- **Validation of the Cleaning Process** — before-and-after reporting and manual spot checks to
+  confirm the pipeline behaves as intended.
+- **Deliverables** — the concrete artefacts this stage produces (cleaned dataset, fitted
+  transformers, cleaning report).
 
 ## Key Decision
 
-The SMS Spam Collection v.1 was selected over pre-featurised alternatives (e.g. Spambase) because it
-preserves raw text, has trustworthy manually-verified labels, reflects a realistic (not artificially
-balanced) class imbalance, and is an appropriately sized corpus for iterative work within a four-week
-internship.
+All cleaning and feature-engineering steps are encapsulated in one `Pipeline` object rather than run
+as ad-hoc scripts, so the exact same transformations apply identically to training and test data with
+zero risk of information leakage.
 
 ## Before Submitting
 
